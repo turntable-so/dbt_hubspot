@@ -9,11 +9,11 @@ with history as (
 
     select
         company_id,
-        field_name,
-        change_source,
-        change_source_id,
+        name as field_name,
+        source as change_source,
+        source_id as change_source_id,
         change_timestamp as valid_from,
-        new_value,
+        value as new_value,
         lead(change_timestamp) over (partition by company_id, field_name order by change_timestamp) as valid_to
     from history
 
